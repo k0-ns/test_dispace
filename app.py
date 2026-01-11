@@ -38,6 +38,7 @@ PAGE = '''
     <script>
         const box = document.getElementById('dragBox');
         let dragging = false;
+        let isSmall = false;
         
         box.onmousedown = function(e) {
             dragging = true;
@@ -46,10 +47,9 @@ PAGE = '''
         
         document.onmousemove = function(e) {
             if (!dragging) return;
-            
-            box.style.left = e.clientX - 150 + 'px'; // половина ширины
-            box.style.top = e.clientY - 37 + 'px'; // половина высоты
-            box.style.bottom = 'auto'; // убираем фиксированное bottom
+            box.style.left = e.clientX - 150 + 'px';
+            box.style.top = e.clientY - 37 + 'px';
+            box.style.bottom = 'auto';
         };
         
         document.onmouseup = function() {
@@ -57,11 +57,22 @@ PAGE = '''
             box.style.cursor = 'move';
         };
         
-        // Двойной клик - обратно в угол
+        // Двойной клик - меняем размер
         box.ondblclick = function() {
-            box.style.left = '20px';
-            box.style.top = '';
-            box.style.bottom = '20px';
+            if (isSmall) {
+                // Возвращаем нормальный
+                box.style.width = '300px';
+                box.style.height = '75px';
+                box.style.fontSize = '14px';
+                box.style.padding = '10px';
+            } else {
+                // Делаем очень маленькой
+                box.style.width = '50px';
+                box.style.height = '20px';
+                box.style.fontSize = '2px';
+                box.style.padding = '1px';
+            }
+            isSmall = !isSmall;
         };
     </script>
 </body>
