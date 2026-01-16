@@ -8,3 +8,8 @@ def load_questions_from_file(filename, delimiter='%'):
     
 def questions_to_text(questions):
     return '\n\n'.join(questions)
+
+def load_questions_unformatted(filename):
+    with open(f'static/answers/{filename}', 'r', encoding='utf-8') as file:
+        content = file.read()
+        return content

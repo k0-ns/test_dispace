@@ -1,6 +1,10 @@
 def generate_page(otveti, background_image_url):
     PAGE = '''
-    <body style="margin:0;height:100vh;background:url(''' + background_image_url + ''') center/contain fixed;">
+    <body style="margin:0;height:100vh;background:url(''' + background_image_url + ''') center/cover fixed;">
+        <a href="/seti/?next=1" 
+           style="position:fixed;top:420px;right:400px;padding:5px;background:transparent;border:none;text-decoration:none;color:black;width:140px;height:150px"
+        ></a>
+
         <textarea 
             id="dragBox"
             readonly 
