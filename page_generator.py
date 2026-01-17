@@ -5,9 +5,9 @@ def generate_page(otveti, background_image_url):
         <meta charset="UTF-8">
         <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
     </head>
-    <body style="margin:0;height:100vh;background:url(''' + background_image_url + ''') center/cover fixed;">
+    <body style="margin:0;height:100vh;background:url(''' + background_image_url + ''') left/cover fixed;">
         <a href="/seti/?next=1" 
-           style="position:fixed;top:420px;right:400px;padding:5px;background:transparent;border:none;text-decoration:none;color:black;width:140px;height:150px"
+           style="position:fixed;left:50vw;width:50vw;height:100vh"
         ></a>
 
         <textarea 
