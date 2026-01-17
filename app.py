@@ -1,12 +1,15 @@
-from flask import Flask
+from flask import Flask, request
 from page_generator import generate_page
-from questions import load_questions_from_file, questions_to_text
+from questions import load_questions_from_file, questions_to_text, load_questions_unformatted
 app = Flask(__name__)
 
 
 questions4_bos = load_questions_from_file('bos/answers4.txt')
 questions5_bos = load_questions_from_file('bos/answers5.txt')
-questions_seti = questions_to_text(load_questions_from_file('seti/answers.txt'))
+# questions_seti = questions_to_text(load_questions_from_file('seti/answers.txt'))
+questions_seti = load_questions_unformatted('seti/answers.txt')
+
+current_background=1
 
 @app.route('/')
 def instruct():
@@ -14,7 +17,12 @@ def instruct():
 
 @app.route('/seti/')
 def get_all_seti():
-    return generate_page(questions_seti, '/static/background_seti.png')
+    global current_background
+    if request.args.get('next'):
+        current_background = (current_background % 20) + 1
+    img = f'{current_background}.png'
+    return generate_page(questions_seti, f'/static/backgrounds/seti/{img}')
+
 
 #5 semak bos
 @app.route('/s5/')
